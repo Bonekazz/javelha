@@ -60,8 +60,9 @@ public class Main {
       boolean winner = false;
 
       for (String seq : winSequencies) {
-        print(seq + " -> " + playerSequence[round - 1] + " -- " + (playerSequence[round - 1] == seq));
-        Thread.sleep(200);
+        // DEBUG
+        // print(seq + " -> " + playerSequence[round - 1] + " -- " + (playerSequence[round - 1] == seq));
+        // Thread.sleep(200);
 
         char[] charSeq = playerSequence[round - 1].toCharArray(); Arrays.sort(charSeq);
         String sortSeq = new String(charSeq);
