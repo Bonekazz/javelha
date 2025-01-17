@@ -10,12 +10,13 @@ public class Main {
     boolean[] matrix = new boolean[10];
     Arrays.fill(matrix, false);
 
-    String board = 
+    String cleanBoard = 
       " 1 | 2 | 3 \n" +
       "-----------\n" +
       " 4 | 5 | 6 \n" +
       "-----------\n" +
       " 7 | 8 | 9 \n";    
+    String board = new String(cleanBoard);
 
     String[] winSequencies = {
       "147", "258", "369",  // COLS
@@ -27,8 +28,10 @@ public class Main {
 
     byte round = 1;
     boolean quit = false;
+    byte roundCounter = 1;
 
     while (!quit) {
+
       print("\n==== JOGO DA VELHA ====\n");
       print(board + "\n");
       print("> VEZ DO JOGADOR: " + round + "\n");
@@ -53,6 +56,7 @@ public class Main {
       print("voce escolheu " + choice);
 
       board = board.replace(choice, round == 1 ? 'X' : 'O');
+      roundCounter++;
       boolean winner = false;
 
       for (String seq : winSequencies) {
@@ -77,6 +81,12 @@ public class Main {
       }
 
       if (winner) continue;
+      if (roundCounter == 10 && !winner) {
+        print("\n> EMPATE! Deu velha...Recomeçando ...");
+        roundCounter = 0;
+        playerSequence[0] = ""; playerSequence[1] = "";
+        Thread.sleep(3000); clear(); continue;
+      } 
 
       round = (round == 1) ? (byte) 2 : (byte) 1;
       Thread.sleep(1000);
