@@ -10,6 +10,6 @@ javac Main.java && java Main
 javac Main.java
 java Main
 
-# or you can use makefiles and type:
+# if you have Make installed
 make
 ```
